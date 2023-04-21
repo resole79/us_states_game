@@ -41,12 +41,17 @@ while correct_answer_len < us_states_len:
 
     # write exit to finish program and write missing state file
     if choice_user == "Exit":
-        for state in us_states_list:
-            if state not in correct_answer:
-                us_state_missing.append(state)
+        us_state_missing = [state for state in us_states_list if state not in correct_answer]
+
+        #for state in us_states_list:
+        #    if state not in correct_answer:
+        #        us_state_missing.append(state)
+
         list_to_write = pandas.DataFrame(us_state_missing)
         list_to_write.to_csv("you_missing.csv")
         break
+
+
     # if to check the state in inside csv file
     if not us_state_user_choice.empty:
         correct_answer.append(choice_user)
